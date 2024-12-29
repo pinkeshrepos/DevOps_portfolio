@@ -1,0 +1,34 @@
+name: Deploy Portfolio to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment on push to the 'main' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js (if using JavaScript, you can skip this for a static site)
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Build the site (optional, if using a build tool)
+        run: |
+          # For example, if using a static site generator like Jekyll, Hugo, etc.
+          # npm install
+          # npm run build
+          echo "No build step needed for static HTML/CSS"
+      
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # The branch where the site will be deployed
+          folder: .  # The folder containing the portfolio's build (in this case, the root)
+          token: ${{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}}  # Use the GitHub token for authentication
+
